@@ -61,7 +61,7 @@ public class PlayThread extends Thread {
             // 是否缓冲完成
             boolean isLoaded = false;
             // 缓冲 + 播放
-            while (AudioTrack.PLAYSTATE_STOPPED != mAudioTrack.getPlayState()) {
+            while (null != mAudioTrack && AudioTrack.PLAYSTATE_STOPPED != mAudioTrack.getPlayState()) {
                 // 字符长度
                 int len;
                 if (-1 != (len = inputStream.read(buffer))) {
@@ -137,7 +137,6 @@ public class PlayThread extends Thread {
     public void stopp() {
         releaseAudioTrack();
     }
-
 
     private void releaseAudioTrack() {
         if (null != mAudioTrack) {

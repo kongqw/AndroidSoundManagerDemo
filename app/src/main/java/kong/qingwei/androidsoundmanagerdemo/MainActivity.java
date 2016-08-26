@@ -53,29 +53,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mPlayThread.start();
                 break;
             case R.id.tb_pause: // 暂停
-                mPlayThread.pause();
+                if (null != mPlayThread) {
+                    mPlayThread.pause();
+                }
                 break;
             case R.id.bt_replay: // 继续播放
-                mPlayThread.play();
+                if (null != mPlayThread) {
+                    mPlayThread.play();
+                }
                 break;
             case R.id.bt_stop: // 停止
-                mPlayThread.stopp();
-                mPlayThread = null;
+                if (null != mPlayThread) {
+                    mPlayThread.stopp();
+                    mPlayThread = null;
+                }
                 break;
             case R.id.channel_left: // 禁用左声道
                 if (null != mPlayThread)
                     mPlayThread.setChannel(false, true);
-                mBalance.setProgress(0);
+                // mBalance.setProgress(0);
                 break;
             case R.id.channel_right: // 禁用右声道
                 if (null != mPlayThread)
                     mPlayThread.setChannel(true, false);
-                mBalance.setProgress(mBalance.getMax());
+                // mBalance.setProgress(mBalance.getMax());
                 break;
             case R.id.channel_default: // 恢复左右声道
                 if (null != mPlayThread)
                     mPlayThread.setChannel(true, true);
-                mBalance.setProgress(mBalance.getMax() / 2);
+                // mBalance.setProgress(mBalance.getMax() / 2);
                 break;
             case R.id.send_diff_data: // 左右声道发送不同的数据
                 if (null != mChannelLeftPlayer) {
